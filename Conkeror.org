@@ -1,0 +1,33 @@
+#+TITLE: Installing Conkeror web browser on Ubuntu
+
+** Introduction
+
+These are my notes for building [[http://conkeror.org/][Conkeror]] from source on Ubuntu. 
+There are probably other ways to install on Ubuntu but I prefer to build, 
+as if I need to patch the source I can easily.
+
+Conkeror is a keyboard-oriented, highly-customizable, highly-extensible web browser 
+based on Mozilla XULRunner, written mainly in JavaScript, and inspired by Emacs.
+
+** Installation
+
+You can download the lastest git version of Conkeror from the git repository 
+=http://repo.or.cz/r/conkeror.git=.
+
+From the command line I install like this...
+
+Download source:
+
+#+begin_src sh   :lang bash
+mkdir -p ~/Builds/conkeror_build
+cd ~/Builds/conkeror_build
+git clone http://repo.or.cz/r/conkeror.git
+cd conkeror
+#+end_src sh   :lang bash
+
+Build source:
+
+#+begin_src sh   :lang bash
+make
+sudo make install
+#+end_src sh   :lang bash

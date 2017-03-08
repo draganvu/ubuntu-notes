@@ -1,0 +1,22 @@
+#+TITLE: Notes for font rendering on Ubuntu
+
+** Introduction
+
+To get nice font rendering on Ubuntu when using a window manager.
+Firstly create a file called =.Xdefaults= and add the following:
+
+#+begin_src conf
+Xft.antialias: true
+Xft.autohint: false
+Xft.dpi: 96
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+Xft.rgba: rgb
+#+end_src conf
+
+Then add this line to your =.xinitrc= file:
+
+#+begin_src conf
+xrdb -merge .Xdefaults &
+#+end_src conf

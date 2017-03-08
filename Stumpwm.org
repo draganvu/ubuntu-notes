@@ -1,0 +1,71 @@
+#+TITLE: Installing StumpWM version 1.0.0 on Ubuntu
+
+** Introduction
+
+These are my notes for building and installing [[https://stumpwm.github.io/][Stump Window Manager]] 
+on Ubuntu.
+
+StumpWM is a tiling, keyboard driven X11 Window Manager written entirely in Common Lisp.
+
+You can use the Git version or the stable release versions from the website. I use version 1.0.0.
+You can check the latest version of StumpWM by checking the website's 
+[[https://stumpwm.github.io/download.html][downloads]] page.
+Or you can view the StumpWM repository on Github at this 
+[[https://github.com/stumpwm/stumpwm][link]].
+
+** Prerequisites
+
+I compile Stumpwm using [[http://www.sbcl.org/][SBCL]].
+I use [[https://www.quicklisp.org/beta/][Quicklisp]] to install the dependencies.
+
+I setup Quicklisp from the command line like this...
+
+#+begin_src sh   :lang bash
+curl -O https://beta.quicklisp.org/quicklisp.lisp
+sbcl --load quicklisp.lisp
+#+end_src sh   :lang bash
+
+We need to install Stumpwm's dependencies:
+- clx
+- cl-ppcre
+
+In the Lisp REPL prompt enter the following:
+#+begin_src sh   :lang bash
+(quicklisp-quickstart:install)
+(ql:add-to-init-file)
+(ql:quickload "clx")
+(ql:quickload "cl-ppcre")
+(SB-EXT:EXIT)
+#+end_src sh   :lang bash
+
+** Installation
+
+Download source:
+
+#+begin_src sh   :lang bash
+mkdir -p ~/Builds/stumpwm_build
+cd ~/Builds/stumpwm_build
+wget https://github.com/stumpwm/stumpwm/archive/v1.0.0.tar.gz
+tar xvfz v1.0.0.tar.gz
+cd stumpwm-1.0.0
+#+end_src sh   :lang bash
+
+Build source:
+
+#+begin_src sh   :lang bash
+autoconf
+./configure
+make
+sudo make install
+#+end_src sh   :lang bash
+
+** Post Installation
+
+Add this line to your =.xinitrc= to launch Stumpwm:
+
+#+begin_src sh   :lang conf
+exec /usr/local/bin/stumpwm
+#+end_src sh   :lang conf
+
+Configure Stumpwm by using a config file =.stumpwmrc= or you can use 
+=lisp= files in a directory called =.stumpwm.d=.

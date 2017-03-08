@@ -1,0 +1,18 @@
+##------------------------------------------------------------
+## File: ~/.ratpoisonrc --- barebones ratpoison config file
+##------------------------------------------------------------
+
+# set ratpoison escape key
+escape C-z
+
+# 7 seconds for messages
+msgwait 7
+
+# keybindings for some programs
+bind e exec emacs
+bind f exec firefox
+bind o exec thunar
+
+# personal keybindings
+bind h hsplit
+bind q only

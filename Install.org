@@ -1,0 +1,15 @@
+#+TITLE: Installing an minimal Ubuntu install
+
+** Downloading
+- Download the minimal =.iso= file from Ubuntu website
+- Boot iso on USB key, I choose Expert Install option when it boots. See Note below
+- Note: I have been testing this on Virtualbox and need to disable IPV6 to get the install to finish
+- Install and follow instructions
+
+** Post install
+#+begin_src sh   :lang bash
+sudo apt-get install git
+git clone https://github.com/draganvu/ubuntu-notes.git
+cd ubuntu-notes
+sudo chmod a+x ./ubuntu-barebones.sh && ./ubuntu-barebones.sh
+#+end_src sh   :lang bash

@@ -1,0 +1,61 @@
+#+TITLE: Installing GNU/Emacs on Ubuntu
+
+** Introduction
+
+These are my notes for installing [[https://www.gnu.org/software/emacs/][GNU/Emacs]] 
+on Ubuntu. 
+
+Emacs is an extensible, customizable, free/libre text editor — and more.
+
+You can check the latest version of Emacs by checking the website 
+[[https://www.gnu.org/software/emacs/index.html#Releases][here]] or check the 
+[[https://www.gnu.org/software/emacs/history.html][version history]].
+The Emacs in the Ubuntu repositories is usually not the latest version so I build from
+source.
+
+** Installation
+
+You can download the lastest Emacs from the nearest mirror at this 
+[[https://ftpmirror.gnu.org/emacs/][link]], or use the 
+[[http://ftp.gnu.org/gnu/emacs/][main GNU ftp]] server.
+
+From the command line I install like this...
+
+Remove any old versions of Emacs:
+
+#+begin_src sh   :lang bash
+sudo apt-get purge emacs
+#+end_src sh   :lang bash
+
+Install dependencies:
+
+#+begin_src sh   :lang bash
+sudo apt-get install build-essential
+sudo apt-get build-dep emacs24
+#+end_src sh   :lang bash
+
+Download source:
+
+#+begin_src sh   :lang bash
+mkdir -p ~/Builds/emacs_build
+cd ~/Builds/emacs_build
+wget http://ftp.gnu.org/gnu/emacs/emacs-$emacs_version.tar.gz
+tar xvfz emacs-$emacs_version.tar.gz
+cd emacs-$emacs_version
+#+end_src sh   :lang bash
+
+Build source:
+
+#+begin_src sh   :lang bash
+./configure
+make
+sudo make install
+#+end_src sh   :lang bash
+
+** Post Installation
+
+To configure Emacs you copy your config files to a =/.emacs.d= directory. 
+I backup any old Emacs config and clone my Emacs config like this:
+#+begin_src sh   :lang bash
+git clone https://github.com/draganvu/emacs-config.git ~/.emacs.d
+#+end_src sh   :lang bash

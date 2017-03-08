@@ -1,0 +1,66 @@
+#+TITLE: Installing Urxvt (rxvt-unicode-256color) on Ubuntu
+
+* Introduction
+
+These are my notes for installing and setting up 
+[[http://software.schmorp.de/pkg/rxvt-unicode.html][Urxvt]] on Ubuntu. 
+
+Urxvt (rxvt-unicode) is a fork of the well known terminal emulator rxvt.
+
+** Installation
+
+To install from the command line:
+
+#+begin_src sh   :lang bash
+sudo apt-get install rxvt-unicode-256color
+#+end_src sh   :lang bash
+
+** Post Install
+
+To get Copy and Paste with your own keybindings working with Urxvt can be 
+troublesome and there seems to be various hacks. I found a solution on the
+[[https://wiki.gentoo.org/wiki/Rxvt-unicode#Copy.2FPaste_and_URL_handling][Gentoo wiki]] 
+that I am happy with.
+
+Add this to your =.Xdefaults= file:
+
+#+begin_src sh   :lang conf
+URxvt.perl-ext-common: default,selection-to-clipboard,pasta
+URxvt.keysym.C-c: perl:clipboard:copy
+URxvt.keysym.C-v: perl:pasta:paste
+#+end_src sh   :lang conf
+
+Then copy the contents of this file =pasta= to =/usr/lib/urxvt/perl/=:
+
+#+begin_src sh   :lang perl
+#! /usr/bin/env perl -w
+# Author:   Aaron Caffrey
+# Website:  https://github.com/wifiextender/urxvt-pasta
+# License:  GPLv3
+
+# Usage: put the following lines in your .Xdefaults/.Xresources:
+# URxvt.perl-ext-common           : selection-to-clipboard,pasta
+# URxvt.keysym.Control-Shift-V    : perl:pasta:paste
+
+use strict;
+
+sub on_user_command {
+  my ($self, $cmd) = @_;
+  if ($cmd eq "pasta:paste") {
+    $self->selection_request (urxvt::CurrentTime, 3);
+  }
+  ()
+}
+#+end_src sh   :lang perl
+
+You can also check out the Urxvt extensions of urxvt-perls in
+this github [[https://github.com/muennich/urxvt-perls][repo]] from Bert Münnich.
+These can be used for Uxrvt versions prior to version 9.21.
+You can copy the files to =/usr/lib/urxvt/perl/= and use something like this:
+#+begin_src sh   :lang conf
+URxvt.perl-ext-common: default,clipboard
+URxvt.keysym.C-c: perl:clipboard:copy
+URxvt.keysym.C-v: perl:clipboard:paste
+#+end_src sh   :lang conf
+
+There are many other extensions but copy and paste is all I really use.

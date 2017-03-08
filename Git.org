@@ -1,0 +1,60 @@
+#+TITLE: Notes for Git using on Ubuntu
+
+** Introduction
+
+These are my notes for using [[https://git-scm.com/][git]] on Ubuntu.
+
+Git is a free and open source distributed version control system.
+
+Git is installed as the first step in my setup.
+
+#+begin_src sh   :lang bash
+sudo apt-get install git
+git config --global user.name "draganvu"
+git config --global user.email "dvujovic@protonmail.ch"
+#+end_src sh   :lang bash
+
+** Usage
+
+To clone a repository from Github:
+
+#+begin_src sh   :lang bash
+git clone https://github.com/draganvu/ubuntu-notes.git
+#+end_src sh   :lang bash
+
+To pull any changes from Github:
+
+#+begin_src sh   :lang bash
+git pull origin master
+#+end_src sh   :lang bash
+
+To create a new repository and initialise:
+
+#+begin_src sh   :lang bash
+sudo mkdir -p ~/github/mytest
+cd ~/github/mytest
+git init
+#+end_src sh   :lang bash
+
+Add files to your new repository (Note this adds all files):
+
+#+begin_src sh   :lang bash
+git add .
+#+end_src sh   :lang bash
+
+Commit the new files
+
+#+begin_src sh   :lang bash
+git commit -m "First commit"
+#+end_src sh   :lang bash
+
+Add the url where the repo will be pushed (only needed once):
+#+begin_src sh   :lang bash
+git remote add origin remote https://github.com/draganvu/mytest.git
+#+end_src sh   :lang bash
+
+Push the changes to the repo online:
+#+begin_src sh   :lang bash
+git push origin master
+#+end_src sh   :lang bash
+
