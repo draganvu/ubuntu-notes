@@ -2,7 +2,7 @@
 ###########################################################################
 #
 # File: ubuntu-barebones.sh
-# Description: Sets up ubuntu with barebones install. See README.md
+# Description: Sets up minimal ubuntu install with barebones config.
 # Author: Dragan Vujović <dvujovic@protonmail.ch>
 # License: GPLv3+
 #
@@ -51,6 +51,7 @@ then
     echo "Setting up Ratpoison barbones config..."
     cp -v ~/ubuntu-notes/config-files/.ratpoisonrc ~/.ratpoisonrc
 
+    echo "Install finished successfully! Please reboot your computer."
 else
     echo "Aborting install script execution"
 fi
