@@ -27,6 +27,10 @@ then
     git config --global user.email "dvujovic@protonmail.ch"
     mkdir -p ~/github
 
+    # configure sound
+    sudo apt-get install alsa-base
+    alsactl init
+
     # install and configure fonts
     echo "starting to install fonts"
     sudo apt-get install fonts-freefont-otf
@@ -34,14 +38,32 @@ then
     sudo apt-get install ttf-anonymous-pro
     sudo apt-get install fonts-hack-otf
     sudo apt-get install fonts-inconsolata
+    sudo apt-get install fonts-font-awesome
     echo "Caching fonts"
     fc-cache -f -v
+
+    # install icons and themes
+    sudo apt-get install faenza-icon-theme
+    sudo apt-get install gnome-themes-standard
 
     # configure folder for emacs backups and saves
     mkdir -p ~/.emacs-backups
 
+    # configure folders
+    mkdir -p ~/Documents
+    mkdir -p ~/Music
+    mkdir -p ~/Pictures
+    mkdir -p ~/Videos
+    mkdir -p ~/Downloads
+
     # install feh (for setting background wallpaper)
     sudo apt-get install feh
+
+    # install music player
+    sudo apt-get install moc
+
+    # install utils
+    sudo apt-get install htop
 
     # wip
 
