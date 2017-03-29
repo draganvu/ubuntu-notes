@@ -31,3 +31,13 @@ Build source:
 make
 sudo make install
 #+end_src sh   :lang bash
+** Post Installation
+
+To configure Conkeror you can put your configuration in a file called 
+=.conkerorrc= or you can split your config files in a 
+=/.conkerorrc= directory.
+
+I setup my Conkeror config from my Github repo like this:
+#+begin_src sh   :lang bash
+git clone https://github.com/draganvu/conkeror-config.git ~/.conkerorrc
+#+end_src sh   :lang bash
