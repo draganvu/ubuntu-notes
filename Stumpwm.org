@@ -21,6 +21,8 @@ I use [[https://www.quicklisp.org/beta/][Quicklisp]] to install the dependencies
 I setup Quicklisp from the command line like this...
 
 #+begin_src sh   :lang bash
+sudo apt-get install curl
+sudo apt-get install sbcl
 curl -O https://beta.quicklisp.org/quicklisp.lisp
 sbcl --load quicklisp.lisp
 #+end_src sh   :lang bash
