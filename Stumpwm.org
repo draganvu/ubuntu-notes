@@ -28,8 +28,10 @@ sbcl --load quicklisp.lisp
 #+end_src sh   :lang bash
 
 We need to install Stumpwm's dependencies:
-- clx
-- cl-ppcre
+- clx (needed to build Stumpwm 1.0.0)
+- cl-ppcre (needed to build Stumpwm 1.0.0)
+- alexandria (optional: needed for stump extension modules)
+- clx-truetype (optional: needed for xft fonts)
 
 In the Lisp REPL prompt enter the following:
 #+begin_src sh   :lang bash
@@ -37,6 +39,9 @@ In the Lisp REPL prompt enter the following:
 (ql:add-to-init-file)
 (ql:quickload "clx")
 (ql:quickload "cl-ppcre")
+(ql:quickload "alexandria")
+(ql:quickload "clx-truetype")
+(xft:cache-fonts)
 (SB-EXT:EXIT)
 #+end_src sh   :lang bash
 
